@@ -11,7 +11,6 @@ resetButton.addEventListener("click", () => {
 });
 
 function createGrid(cellSize) {
-  // if (cellSize == "") cellSize = getCellCount();
   gameBox.style.setProperty("--grid-rows", cellSize);
   gameBox.style.setProperty("--grid-columns", cellSize);
 
