@@ -1,7 +1,7 @@
 const gameBox = document.querySelector(".grid-container");
 const resetButton = document.querySelector("#btnReset");
 
-createGrid();
+createGrid(16);
 
 resetButton.addEventListener("click", () => {
   const userAnswer = confirm("Clear the grid?");
@@ -10,12 +10,12 @@ resetButton.addEventListener("click", () => {
   }
 });
 
-function createGrid() {
-  const cellNumber = getCellCount();
-  gameBox.style.setProperty("--grid-rows", cellNumber);
-  gameBox.style.setProperty("--grid-columns", cellNumber);
+function createGrid(cellSize) {
+  // if (cellSize == "") cellSize = getCellCount();
+  gameBox.style.setProperty("--grid-rows", cellSize);
+  gameBox.style.setProperty("--grid-columns", cellSize);
 
-  for (let i = 0; i < cellNumber * cellNumber; i++) {
+  for (let i = 0; i < cellSize ** 2; i++) {
     createCell();
   }
 }
@@ -43,9 +43,10 @@ function getCellCount() {
 }
 
 function reset() {
+  const cellSize = getCellCount();
   const cells = document.querySelectorAll(".cell");
   cells.forEach((cell) => {
     gameBox.removeChild(cell);
   });
-  createGrid();
+  createGrid(cellSize);
 }

@@ -35,8 +35,15 @@ body {
   width: auto;
 }
 
-.controls-container {
-  width: 150px;
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 25px;
+}
+
+.sidebar-box {
+  width: 175px;
   height: auto;
   align-self: flex-start;
   display: flex;
@@ -58,11 +65,18 @@ body {
   gap: 2rem;
 }
 
-/* .my-info a,
+.my-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.my-info a,
 .my-info a:visited {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.6);
   font-family: monospace;
   font-size: 20px;
   cursor: pointer;
-} */
+}
