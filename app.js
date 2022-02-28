@@ -10,6 +10,7 @@ randomColor.addEventListener("click", () => {
 });
 
 eraseButton.addEventListener("click", () => {
+  eraseButton.classList.toggle("active");
   if (color !== "") color = "";
   else if (color === "") color = "black";
 });
