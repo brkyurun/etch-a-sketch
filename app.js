@@ -1,7 +1,18 @@
 const gameBox = document.querySelector(".grid-container");
+const randomColor = document.querySelector("#btnRandom");
+const eraseButton = document.querySelector("#btnErase");
 const resetButton = document.querySelector("#btnReset");
-
+let color = "black";
 createGrid(16);
+
+randomColor.addEventListener("click", () => {
+  color = `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`;
+});
+
+eraseButton.addEventListener("click", () => {
+  if (color !== "") color = "";
+  else if (color === "") color = "black";
+});
 
 resetButton.addEventListener("click", () => {
   const userAnswer = confirm("Clear the grid?");
@@ -23,7 +34,7 @@ function createCell() {
   const cell = document.createElement("div");
   cell.className = "cell";
   cell.addEventListener("mouseenter", () => {
-    cell.style.backgroundColor = "black";
+    cell.style.backgroundColor = color;
   });
   gameBox.appendChild(cell);
 }
@@ -47,5 +58,6 @@ function reset() {
   cells.forEach((cell) => {
     gameBox.removeChild(cell);
   });
+  color = "black";
   createGrid(cellSize);
 }
