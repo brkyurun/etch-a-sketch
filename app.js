@@ -2,17 +2,19 @@ const gameBox = document.querySelector(".grid-container");
 const randomColor = document.querySelector("#btnRandom");
 const eraseButton = document.querySelector("#btnErase");
 const resetButton = document.querySelector("#btnReset");
-let color = "black";
+let coloringMode = blackMode;
 createGrid(16);
 
 randomColor.addEventListener("click", () => {
-  color = `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`;
+  randomColor.classList.toggle("active");
+  if (coloringMode !== rainbowMode) coloringMode = rainbowMode;
+  else if (coloringMode === rainbowMode) coloringMode = blackMode;
 });
 
 eraseButton.addEventListener("click", () => {
   eraseButton.classList.toggle("active");
-  if (color !== "") color = "";
-  else if (color === "") color = "black";
+  if (coloringMode !== eraserMode) coloringMode = eraserMode;
+  else if (coloringMode === eraserMode) coloringMode = blackMode;
 });
 
 resetButton.addEventListener("click", () => {
@@ -21,6 +23,20 @@ resetButton.addEventListener("click", () => {
     reset();
   }
 });
+
+function rainbowMode(element) {
+  element.style.backgroundColor = `hsl(${Math.floor(
+    Math.random() * 360
+  )}, 100%, 50%)`;
+}
+
+function blackMode(element) {
+  element.style.backgroundColor = "black";
+}
+
+function eraserMode(element) {
+  element.style.backgroundColor = "";
+}
 
 function createGrid(cellSize) {
   gameBox.style.setProperty("--grid-rows", cellSize);
@@ -35,7 +51,17 @@ function createCell() {
   const cell = document.createElement("div");
   cell.className = "cell";
   cell.addEventListener("mouseenter", () => {
-    cell.style.backgroundColor = color;
+    switch (coloringMode) {
+      case rainbowMode:
+        rainbowMode(cell);
+        break;
+      case eraserMode:
+        eraserMode(cell);
+        break;
+      case blackMode:
+        blackMode(cell);
+        break;
+    }
   });
   gameBox.appendChild(cell);
 }
