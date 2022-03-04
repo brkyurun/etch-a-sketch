@@ -6,15 +6,23 @@ let coloringMode = blackMode;
 createGrid(16);
 
 randomColor.addEventListener("click", () => {
-  randomColor.classList.toggle("active");
-  if (coloringMode !== rainbowMode) coloringMode = rainbowMode;
-  else if (coloringMode === rainbowMode) coloringMode = blackMode;
+  if (coloringMode !== rainbowMode && coloringMode !== eraserMode) {
+    randomColor.classList.toggle("active");
+    coloringMode = rainbowMode;
+  } else if (coloringMode === rainbowMode && coloringMode !== eraserMode) {
+    randomColor.classList.toggle("active");
+    coloringMode = blackMode;
+  }
 });
 
 eraseButton.addEventListener("click", () => {
-  eraseButton.classList.toggle("active");
-  if (coloringMode !== eraserMode) coloringMode = eraserMode;
-  else if (coloringMode === eraserMode) coloringMode = blackMode;
+  if (coloringMode !== eraserMode && coloringMode !== rainbowMode) {
+    eraseButton.classList.toggle("active");
+    coloringMode = eraserMode;
+  } else if (coloringMode === eraserMode && coloringMode !== rainbowMode) {
+    eraseButton.classList.toggle("active");
+    coloringMode = blackMode;
+  }
 });
 
 resetButton.addEventListener("click", () => {
