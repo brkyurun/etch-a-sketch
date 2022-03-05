@@ -93,6 +93,6 @@ function reset() {
   cells.forEach((cell) => {
     gameBox.removeChild(cell);
   });
-  color = "black";
+  coloringMode = blackMode;
   createGrid(cellSize);
 }
